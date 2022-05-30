@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.p-sidebar .p-sidebar-content {
+  padding: 0 !important;
+}
+.p-menu .p-menuitem-link .p-menuitem-text,
+.p-menu .p-menuitem-link .p-menuitem-icon {
+  color: #fff !important;
+  font-size: 20px !important;
+  margin-right: 20px !important;
+}
+.p-menu .p-menuitem-link {
+  padding: 20px 40px !important;
+  margin-bottom: 10px !important;
+}
+.title {
+  text-align: center;
+  margin-bottom: 100px;
+  color: #fff;
+}
+.p-menuitem-link-active {
+  background: rgba(0, 0, 0, 0.12);
+}

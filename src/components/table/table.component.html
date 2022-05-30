@@ -1,0 +1,13 @@
+<p-toolbar>
+  <h2>Seat</h2>
+</p-toolbar>
+<div class="grid gap-5 justify-content-center mt-6">
+  <div
+    *ngFor="let n of numbers"
+    class="col-3 flex justify-content-center align-items-center table-item border-round-2xl border-3 border-primary text-primary"
+  >
+    <p-divider layout="vertical">
+      <span class="p-tag text-4xl">{{ n }}</span>
+    </p-divider>
+  </div>
+</div>
