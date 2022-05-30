@@ -17,7 +17,7 @@ export class FoodComponent implements OnInit {
   ngOnInit(): void {
     this.foodService.getFood(this.page, this.size).subscribe(
       (res: any) => {
-        this.food = res.foods;
+        this.food = res.data;
       },
       (error) => console.log(error)
     );
