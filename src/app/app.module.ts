@@ -18,6 +18,10 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { PaginatorModule } from 'primeng/paginator';
 import { CardModule } from 'primeng/card';
 import { UsersComponent } from 'src/components/users/users.component';
+import { LoginComponent } from 'src/components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { RegisterComponent } from 'src/components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,13 @@ import { UsersComponent } from 'src/components/users/users.component';
     UsersComponent,
     FoodComponent,
     TableComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
     BrowserModule,
     AppRoutingModule,
     SidebarModule,

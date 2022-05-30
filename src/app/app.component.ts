@@ -35,7 +35,7 @@ export class AppComponent {
 
         routerLink: ['/users'],
       },
-      { label: 'Log out', icon: 'pi pi-sign-out' },
+      { label: 'Log out', icon: 'pi pi-sign-out', url: '/login' },
     ];
   }
 }

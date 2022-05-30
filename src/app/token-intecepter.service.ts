@@ -17,7 +17,7 @@ export class TokenIntecepterService implements HttpInterceptor {
       setHeaders: {
         'Content-Type': 'application/json',
 
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI5MDU1ODRiZDNlM2M2MDNjNmQ0M2Q0IiwiZW1haWwiOiJtYW5oa2llbjk4QGdtYWlsLmNvbSIsImlhdCI6MTY1MzkwNTA0MywiZXhwIjoxNjUzOTEyMjQzfQ.mHLDNYW6C3AuFersSmk014rboklzjEiApVvKh59e9mQ`,
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI5MDU1ODRiZDNlM2M2MDNjNmQ0M2Q0IiwiZW1haWwiOiJtYW5oa2llbjk4QGdtYWlsLmNvbSIsImlhdCI6MTY1MzkxNjQ0MCwiZXhwIjoxNjUzOTIzNjQwfQ.4Yu9HCOe-UN7zTsqMQJIbQcb2_c5nrVZOHd7hpke5Zw`,
       },
     });
 
