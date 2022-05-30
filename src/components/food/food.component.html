@@ -11,4 +11,8 @@
     <p>{{ n.strMeal }}</p>
   </div>
 </div>
-<p-paginator [rows]="10" [totalRecords]="total"></p-paginator>
+<p-paginator
+  [rows]="10"
+  [totalRecords]="total"
+  (onPageChange)="paginate($event)"
+></p-paginator>

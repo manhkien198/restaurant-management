@@ -9,15 +9,20 @@ import { FoodService } from './food.service';
 })
 export class FoodComponent implements OnInit {
   public food: Food[] = [];
-  public page: number = 1;
+  public page: number;
   public size: number = 10;
-  public total: number = this.food.length;
-  constructor(private foodService: FoodService) {}
-
+  public total: number = 0;
+  constructor(private foodService: FoodService) {
+    this.page = 1;
+  }
+  public paginate(e: any): void {
+    this.page = e.page;
+  }
   ngOnInit(): void {
     this.foodService.getFood(this.page, this.size).subscribe(
       (res: any) => {
         this.food = res.data;
+        this.total = res.total;
       },
       (error) => console.log(error)
     );
