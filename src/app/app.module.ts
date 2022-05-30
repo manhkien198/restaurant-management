@@ -16,9 +16,17 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { PaginatorModule } from 'primeng/paginator';
+import { CardModule } from 'primeng/card';
+import { UsersComponent } from 'src/components/users/users.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, FoodComponent, TableComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    UsersComponent,
+    FoodComponent,
+    TableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,6 +39,7 @@ import { PaginatorModule } from 'primeng/paginator';
     DividerModule,
     SplitButtonModule,
     PaginatorModule,
+    CardModule,
   ],
   providers: [
     {

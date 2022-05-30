@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.dashboardService.getDashboardData().subscribe(
-      (data: any) => {
-        this.dashboardData = data;
+      (res: any) => {
+        this.dashboardData = res.data;
       },
       (err) => {
         console.log(err);

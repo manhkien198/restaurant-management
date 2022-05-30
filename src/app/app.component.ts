@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent {
   title = 'restaurant-management';
   public items: MenuItem[] = [];
+  constructor(private primengConfig: PrimeNGConfig) {}
   ngOnInit() {
+    this.primengConfig.ripple = true;
     this.items = [
       {
         label: 'Dashboard',

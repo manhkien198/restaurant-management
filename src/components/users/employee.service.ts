@@ -6,11 +6,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class FoodService {
+export class EmployeeService {
   private apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
-  public getFood(page: number, size: number): Observable<Response> {
-    const url = `${this.apiURL}food?page=${page}&size=${size}`;
+  public getEmployeeList(): Observable<Response> {
+    const url = `${this.apiURL}employee`;
     return this.http.get<any>(url);
   }
 }

@@ -1,1 +1,11 @@
-<p>users works!</p>
+<p-toolbar>
+  <h2>Users</h2>
+</p-toolbar>
+<div class="grid gap-5 justify-content-center mt-6">
+  <p-card *ngFor="let n of employee">
+    <img src="{{ n.image }}" alt="" />
+    <p-divider></p-divider>
+    <p>{{ n.fullname }}</p>
+    <p class="text-center">{{ n.position }}</p>
+  </p-card>
+</div>
