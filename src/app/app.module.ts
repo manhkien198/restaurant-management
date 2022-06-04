@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenIntecepterService } from './token-intecepter.service';
@@ -22,7 +22,9 @@ import { LoginComponent } from 'src/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RegisterComponent } from 'src/components/register/register.component';
-
+import { appInitializer } from '../helper/app.initializer';
+import { SigninService } from 'src/components/login/service/signin.service';
+import { ErrorInterceptor } from './error.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,13 @@ import { RegisterComponent } from 'src/components/register/register.component';
       useClass: TokenIntecepterService,
       multi: true,
     },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [SigninService],
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
