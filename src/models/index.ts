@@ -34,6 +34,7 @@ export interface User {
   updatedAt: string;
   __v: number;
   token: string;
+  refreshToken: string;
 }
 export interface RegisterPayload {
   first_name: string;
