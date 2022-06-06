@@ -1,6 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +11,6 @@ import { SidebarModule } from 'primeng/sidebar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { ToolbarModule } from 'primeng/toolbar';
 import { HomeComponent } from 'src/components/dashboard/home.component';
 import { FoodComponent } from 'src/components/food/food.component';
 import { LoginComponent } from 'src/components/login/login.component';
@@ -22,9 +19,14 @@ import { TableComponent } from 'src/components/table/table.component';
 import { UsersComponent } from 'src/components/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrorInterceptorService } from './error.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ToolbarModule } from 'primeng/toolbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { appInitializer } from '../helper/app.initializer';
+import { SigninService } from 'src/components/login/service/signin.service';
+import { ErrorInterceptor } from './error.interceptor';
 import { TokenIntecepterService } from './token-intecepter.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,10 +63,12 @@ import { TokenIntecepterService } from './token-intecepter.service';
       multi: true,
     },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
       multi: true,
+      deps: [SigninService],
     },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 
   bootstrap: [AppComponent],

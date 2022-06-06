@@ -1,63 +1,36 @@
-import {
-  HttpClient,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-
 import { Injectable } from '@angular/core';
-import { catchError, Observable, switchMap, throwError } from 'rxjs';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { SigninService } from 'src/components/login/service/signin.service';
-@Injectable({
-  providedIn: 'root',
-})
-export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(private signinService: SigninService, private http: HttpClient) {}
+
+@Injectable()
+export class ErrorInterceptor implements HttpInterceptor {
+  constructor(private authenticationService: SigninService) {}
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let authReq = request;
-    authReq = this.AddTokenHeader(
-      request,
-      this.signinService.currentUserValue.token
-    );
-    return next.handle(authReq).pipe(
-      catchError((error) => {
-        if (error.status === 401) {
-          // need to implement logout
-          this.signinService.logout();
-          // refresh token logic
-          return this.handleRefreshToken(request, next);
+    return next.handle(request).pipe(
+      catchError((err) => {
+        if (
+          [401, 403].includes(err.status) &&
+          this.authenticationService.currentUserValue
+        ) {
+          // auto logout if 401 or 403 response returned from api
+          this.authenticationService.logout();
         }
+
+        const error = (err && err.error && err.error.message) || err.statusText;
+        console.error(err);
         return throwError(error);
       })
     );
-  }
-
-  handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
-    return this.http
-      .post(
-        `${environment.apiURL}/auth/refresh`,
-        JSON.parse(localStorage.getItem('user') || '')?.refreshToken
-      )
-      .pipe(
-        switchMap((data: any) => {
-          localStorage.setItem('user', data);
-          return next.handle(this.AddTokenHeader(request, data.token));
-        }),
-        catchError((err) => {
-          this.signinService.logout();
-          return throwError(err);
-        })
-      );
-  }
-
-  AddTokenHeader(request: HttpRequest<any>, token: any) {
-    return request.clone({
-      headers: request.headers.set('Authorization', 'bearer ' + token),
-    });
   }
 }
