@@ -22,6 +22,7 @@ import { TableComponent } from 'src/components/table/table.component';
 import { UsersComponent } from 'src/components/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrorInterceptorService } from './error.interceptor';
 import { TokenIntecepterService } from './token-intecepter.service';
 
 @NgModule({
@@ -57,6 +58,11 @@ import { TokenIntecepterService } from './token-intecepter.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenIntecepterService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true,
     },
   ],
