@@ -1,7 +1,10 @@
+<div *ngIf="loading" class="absolute left-50 top-50">
+  <p-progressSpinner></p-progressSpinner>
+</div>
 <p-toolbar>
   <h2>Menu</h2>
 </p-toolbar>
-<div class="grid gap-5 justify-content-center mt-6">
+<div class="grid gap-5 justify-content-center mt-6" *ngIf="!loading">
   <div
     *ngFor="let n of food"
     class="col-3 flex flex-column justify-content-center align-items-center table-item border-round-2xl border-3 border-primary text-primary p-0 overflow-hidden"
@@ -11,8 +14,10 @@
     <p>{{ n.strMeal }}</p>
   </div>
 </div>
-<p-paginator
-  [rows]="10"
-  [totalRecords]="total"
-  (onPageChange)="paginate($event)"
-></p-paginator>
+<div [class.hidden]="loading">
+  <p-paginator
+    [rows]="10"
+    [totalRecords]="total"
+    (onPageChange)="paginate($event)"
+  ></p-paginator>
+</div>

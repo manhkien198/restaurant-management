@@ -12,19 +12,34 @@ export class FoodComponent implements OnInit {
   public page: number;
   public size: number = 10;
   public total: number = 0;
+  public loading = true;
   constructor(private foodService: FoodService) {
     this.page = 1;
   }
   public paginate(e: any): void {
-    this.page = e.page;
+    this.loading = true;
+    this.page = e.page + 1;
+    this.foodService.getFood(this.page, this.size).subscribe({
+      next: (value: any) => {
+        this.food = value.data;
+        this.total = value.total;
+        this.loading = false;
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
   ngOnInit(): void {
-    this.foodService.getFood(this.page, this.size).subscribe(
-      (res: any) => {
-        this.food = res.data;
-        this.total = res.total;
+    this.foodService.getFood(this.page, this.size).subscribe({
+      next: (value: any) => {
+        this.loading = false;
+        this.food = value.data;
+        this.total = value.total;
       },
-      (error) => console.log(error)
-    );
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 }

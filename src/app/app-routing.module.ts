@@ -6,14 +6,15 @@ import { TableComponent } from 'src/components/table/table.component';
 import { UsersComponent } from 'src/components/users/users.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { RegisterComponent } from 'src/components/register/register.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: HomeComponent },
-  { path: 'table', component: TableComponent },
-  { path: 'food', component: FoodComponent },
-  { path: 'users', component: UsersComponent },
+  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'food', component: FoodComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' },
 ];
 
