@@ -32,26 +32,6 @@ export class SigninService {
       })
     );
   }
-<<<<<<< HEAD
-
-=======
-  public refreshToken() {
-    console.log('running');
-    return this.http
-      .post<any>(
-        `${environment.apiURL}/auth/refresh`,
-        this.currentUserValue.refreshToken,
-        { withCredentials: true }
-      )
-      .pipe(
-        map((user) => {
-          this.currentUserSubject.next(user);
-          localStorage.setItem('user', JSON.stringify(user));
-          return user;
-        })
-      );
-  }
->>>>>>> b7cebeb9dce9fd0d8dee59dd7ce7040c7526b80b
   public logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
