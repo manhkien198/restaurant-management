@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
+import { SigninService } from 'src/components/login/service/signin.service';
+import { User } from 'src/models';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,17 @@ import { MenuItem, PrimeNGConfig } from 'primeng/api';
 export class AppComponent {
   title = 'restaurant-management';
   public items: MenuItem[] = [];
-  constructor(private primengConfig: PrimeNGConfig) {}
+  public user: User;
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    private signinService: SigninService,
+    private router: Router
+  ) {
+    this.signinService.user.subscribe((x) => (this.user = x));
+    if (this.user) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.items = [
@@ -35,7 +48,12 @@ export class AppComponent {
 
         routerLink: ['/users'],
       },
-      { label: 'Log out', icon: 'pi pi-sign-out' },
+      {
+        label: 'Log out',
+        icon: 'pi pi-sign-out',
+        // url: '/login',
+        command: () => this.signinService.logout(),
+      },
     ];
   }
 }

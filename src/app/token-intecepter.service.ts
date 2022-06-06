@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenIntecepterService implements HttpInterceptor {
+  private token = JSON.parse(localStorage.getItem('user') || '')?.token;
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -17,7 +18,7 @@ export class TokenIntecepterService implements HttpInterceptor {
       setHeaders: {
         'Content-Type': 'application/json',
 
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI5MDU1ODRiZDNlM2M2MDNjNmQ0M2Q0IiwiZW1haWwiOiJtYW5oa2llbjk4QGdtYWlsLmNvbSIsImlhdCI6MTY1MzkwNTA0MywiZXhwIjoxNjUzOTEyMjQzfQ.mHLDNYW6C3AuFersSmk014rboklzjEiApVvKh59e9mQ`,
+        Authorization: `Bearer ${this.token}`,
       },
     });
 

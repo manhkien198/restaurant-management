@@ -1,0 +1,96 @@
+<div class="limiter">
+  <div
+    class="container-login100"
+    style="background-image: url('../../assets//images/bg-01.jpg')"
+  >
+    <div class="wrap-login100">
+      <form
+        [formGroup]="registerForm"
+        class="login100-form"
+        (ngSubmit)="submit()"
+      >
+        <span class="login100-form-title mb-8"> Login </span>
+        <div>
+          <label for="first-name">First Name</label>
+          <div class="p-inputgroup my-4">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input
+              type="text"
+              id="first-name"
+              pInputText
+              placeholder="First Name"
+              class="border-1 w-full"
+              formControlName="firstName"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="last-name">Last Name</label>
+          <div class="p-inputgroup my-4">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input
+              type="text"
+              id="last-name"
+              pInputText
+              placeholder="Last Name"
+              class="border-1 w-full"
+              formControlName="lastName"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <div class="p-inputgroup my-4">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input
+              type="text"
+              id="email"
+              pInputText
+              placeholder="Username"
+              class="border-1 w-full"
+              formControlName="email"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <div class="p-inputgroup my-4">
+            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+            <input
+              type="password"
+              id="password"
+              pInputText
+              placeholder="Password"
+              class="border-1 w-full"
+              formControlName="password"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="confirm-password">Confirm Password</label>
+          <div class="p-inputgroup my-4">
+            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+            <input
+              type="password"
+              id="confirm-password"
+              pInputText
+              placeholder="Confirm Password"
+              class="border-1 w-full"
+              formControlName="confirmPassword"
+            />
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn mt-8">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="dropDownSelect1"></div>
